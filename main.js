@@ -108,7 +108,7 @@ async function test(){
         console.log("\n\n**TX HASH for Splits Send**:" + res);
 
         var mutableMetaTraits = "exchangeRate:D|0.000000000000000001,makerOwnableSplit:D|0.000000000000000001,expiry:H|1000000,takerID:I|ID,makerSplit:D|0.000000000000000001"
-        res = await orders.define(mnemonic, identityID2, "descriptions:S|", "Which Gift:S|,What Gift:S|", mutableMetaTraits, "Name:S|,Gift:S|Exchange,OrderID:S|", 25, "stake", 200000, "block")
+        res = await orders.define(mnemonic, identityID2, "descriptions:S|", "Which Gifts:S|,What Gifts:S|", mutableMetaTraits, "Name:S|,Gifts:S|Exchange,OrderID:S|", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define Order **: " + res);
 
         // results = await cls.queryCls("Gift")
