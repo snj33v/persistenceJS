@@ -108,25 +108,25 @@ async function test(){
         console.log("\n\n**TX HASH for Splits Send**:" + res);
 
         var mutableMetaTraits = "exchangeRate:D|0.000000000000000001,makerOwnableSplit:D|0.000000000000000001,expiry:H|1000000,takerID:I|ID,makerSplit:D|0.000000000000000001"
-        res = await orders.define(mnemonic, identityID2, "descriptions:S|", "Which Gift:S|,What Gift:S|", mutableMetaTraits, "Gift:S|Exchange,AmazonOrderID:S|", 25, "stake", 200000, "block")
+        res = await orders.define(mnemonic, identityID2, "descriptions:S|", "Which Gift:S|,What Gift:S|", mutableMetaTraits, "Name:S|,Gift:S|Exchange,OrderID:S|", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define Order **: " + res);
 
-        results = await cls.queryCls("Gift")
-        var orderCls = results.chainID + '.' + results.hashID
-
-        var mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
-        res = await orders.make(mnemonic, identityID2, orderCls, "stake", config.makerownableid, "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
-        console.log("\n\n**TX HASH for Make Order **: " + res);
-
-        results = await orders.query("Gift")
-        var orderID = results.clasificationID + '*' + results.makerownableid + '*' + results.takerownableid + '*' + results.makerID + '*' + results.hashID
-
-        res = await orders.cancel(mnemonic, identityID2, orderID, 25, "stake", 200000, "block")
-        console.log("\n\n**TX HASH for Cancel Order **: " + res);
-
-        mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
-        res = await orders.make(mnemonic, identityID2, orderCls, "stake", "stake", "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
-        console.log("\n\n**TX HASH for Make Order **: " + res);
+        // results = await cls.queryCls("Gift")
+        // var orderCls = results.chainID + '.' + results.hashID
+        //
+        // var mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
+        // res = await orders.make(mnemonic, identityID2, orderCls, "stake", config.makerownableid, "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Name:S|Board,Gift:S|Exchange,OrderID:S|1234", 25, "stake", 200000, "block")
+        // console.log("\n\n**TX HASH for Make Order **: " + res);
+        //
+        // results = await orders.query("Name")
+        // var orderID = results.clasificationID + '*' + results.makerownableid + '*' + results.takerownableid + '*' + results.makerID + '*' + results.hashID
+        //
+        // res = await orders.cancel(mnemonic, identityID2, orderID, 25, "stake", 200000, "block")
+        // console.log("\n\n**TX HASH for Cancel Order **: " + res);
+        //
+        // mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
+        // res = await orders.make(mnemonic, identityID2, orderCls, "stake", "stake", "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Name:S|Board,Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
+        // console.log("\n\n**TX HASH for Make Order **: " + res);
 
         // res = await orders.take(mnemonic, identityID2, "0.000000000000000001", orderID, 25, "stake", 200000, "block")
         // console.log("\n\n**TX HASH for Take Order **: " + res);
