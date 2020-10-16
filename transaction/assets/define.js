@@ -12,7 +12,7 @@ function define(mnemonic, classificationID, feesAmount, feesToken, gas, mode, me
         'headers': {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"type":"/xprt/assets/define/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"fromID":classificationID,"mutableTraits":"ASSET1:S|num1,burn:H|1","immutableTraits":"ASSET2:S|","mutableMetaTraits":"ASSET3:S|num3","immutableMetaTraits":"ASSET4:S|num4"}})
+        body: JSON.stringify({"type":"/xprt/assets/define/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"fromID":classificationID,"mutableTraits":"Popularity:S|","immutableTraits":"Des:S|","mutableMetaTraits":"CustSatisfaction:S|,burn:H|1","immutableMetaTraits":"Name:S|"}})
 
     };
     return new Promise(function(resolve, reject) {

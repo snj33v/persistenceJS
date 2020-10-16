@@ -12,7 +12,7 @@ function mint(mnemonic, toID, fromID, classificationID, feesAmount, feesToken, g
         'headers': {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"type":"/xprt/assets/mint/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"toID":toID,"fromID":fromID,"classificationID":classificationID,"mutableProperties":"ASSET1:S|num1,burn:H|1","immutableProperties":"ASSET2:S|num2","mutableMetaProperties":"ASSET3:S|num3","immutableMetaProperties":"ASSET4:S|num4"}})
+        body: JSON.stringify({"type":"/xprt/assets/mint/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"toID":toID,"fromID":fromID,"classificationID":classificationID,"mutableProperties":"Popularity:S|Very","immutableProperties":"Des:S|Hot Water","mutableMetaProperties":"CustSatisfaction:S|,burn:H|1","immutableMetaProperties":"Name:S|Geyser"}})
     };
     return new Promise(function(resolve, reject) {
         request(options, function (error, response) {

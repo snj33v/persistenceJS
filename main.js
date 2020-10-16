@@ -50,28 +50,28 @@ async function test(){
         var results = await identity.queryIdentity(config.nubID)
         var clsID = results.clasificationID + '|' + results.hashID
 
-        res = await identity.define(mnemonic, clsID, "mutableTraits111:S|identity11543", "immutableTraits:S|identity22662", "mutableMetaTraits:S|identity34167", "immutableMetaTraits:S|identity45648", 25, "stake", 200000, "block")
+        res = await identity.define(mnemonic, clsID, "HolidaysTaken:S|", "BelongTo:S|Earth,Birthday:S|", "WorkingHours:S|", "Organization:S|Persistence,DateOfJoining:S|,Name:S|", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define identity 1 **: " + res);
 
-        results = await cls.queryCls("immutableMetaTraits")
+        results = await cls.queryCls("Organization")
         var classificationID = results.chainID + '.' + results.hashID
 
-        res = await identity.issue(mnemonic, config.testAccountAddress, clsID, classificationID, "mutableTraits111:S|identity11543", "immutableTraits:S|identity22662", "mutableMetaTraits:S|identity34167", "immutableMetaTraits:S|identity45648", 25, "stake", 200000, "block")
+        res = await identity.issue(mnemonic, config.testAccountAddress, clsID, classificationID, "HolidaysTaken:S|4", "BelongTo:S|Earth,Birthday:S|22March1996", "WorkingHours:S|12to9", "Organization:S|Persistence,DateOfJoining:S|8July2018,Name:S|John", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for issue identity 1 **: " + res);
 
-        res = await identity.define(mnemonic, clsID, "mutableTraits2:S|identity11543", "immutableTraits2:S|identity22662", "mutableMetaTraits2:S|identity34167", "immutableMetaTraits2:S|identity45648", 25, "stake", 200000, "block")
+        res = await identity.define(mnemonic, clsID, "HolidaysTaken1:S|", "BelongTo1:S|Earth,Birthday:S|", "WorkingHours1:S|", "Organization1:S|Persistence,DateOfJoining:S|,Name:S|", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define identity 2 **:" + res);
 
-        results = await cls.queryCls("immutableMetaTraits2")
+        results = await cls.queryCls("Organization1")
         var classificationID1 = results.chainID + '.' + results.hashID
 
-        res = await identity.issue(mnemonic, config.testAccountAddress, clsID, classificationID1, "mutableTraits2:S|identity11543", "immutableTraits2:S|identity22662", "mutableMetaTraits2:S|identity34167", "immutableMetaTraits2:S|identity45648", 25, "stake", 200000, "block")
+        res = await identity.issue(mnemonic, config.testAccountAddress, clsID, classificationID1, "HolidaysTaken1:S|5", "BelongTo1:S|Earth,Birthday:S|24June1996", "WorkingHours1:S|10to7", "Organization1:S|Persistence,DateOfJoining:S|9July2018,Name:S|Samantha", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for issue identity 2 **:" + res);
 
-        results = await identity.queryIdentity("immutableMetaTraits")
+        results = await identity.queryIdentity("Organization")
         var identityID1 = results.clasificationID + '|' + results.hashID
 
-        results = await identity.queryIdentity("immutableMetaTraits2")
+        results = await identity.queryIdentity("Organization1")
         var identityID2 = results.clasificationID + '|' + results.hashID
 
         res = await identity.provision(mnemonic, identityID1, wallet.address, 25, "stake", 200000, "block")
@@ -79,26 +79,24 @@ async function test(){
 
         res = await identity.unprovision(mnemonic, identityID1, wallet.address, 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for Unprovision **: " + res);
-        // var address = await accounts.recover(config.nubID)
-        // var clsID = results.clasificationID + '|' + results.hashID
 
         res = await assets.define(mnemonic, identityID1, 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define assets**:"  + res);
 
-        results = await cls.queryCls("ASSET4")
+        results = await cls.queryCls("Name")
         assetClsID = results.chainID + '.' + results.hashID
 
         res = await assets.mint(mnemonic, identityID1, identityID1, assetClsID, 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for mint asset**: " + res);
 
-        results = await assets.query("ASSET4")
+        results = await assets.query("Name")
         var assetID = results.clasificationID + '|' + results.hashID
 
         res = await assets.mutate(mnemonic, identityID1, assetID, 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for mutate asset**: " + res);
 
-        res = await meta.reveal(mnemonic, "H|1", 25, "stake", 200000, "block")
-        console.log("\n\n**TX HASH for meta reveal**:" + res);
+        // res = await meta.reveal(mnemonic, "H|1", 25, "stake", 200000, "block")
+        // console.log("\n\n**TX HASH for meta reveal**:" + res);
 
         res = await splits.wrap(mnemonic, identityID1, "100000stake", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for Wrap**: " + res);
@@ -110,14 +108,14 @@ async function test(){
         console.log("\n\n**TX HASH for Splits Send**:" + res);
 
         var mutableMetaTraits = "exchangeRate:D|0.000000000000000001,makerOwnableSplit:D|0.000000000000000001,expiry:H|1000000,takerID:I|ID,makerSplit:D|0.000000000000000001"
-        res = await orders.define(mnemonic, identityID2, "description:S|", "Which Gift:S|Christmas Gift,What Gift:S|", mutableMetaTraits, "Gift:S|Exchange,AmazonOrderID:S|", 25, "stake", 200000, "block")
+        res = await orders.define(mnemonic, identityID2, "descriptions:S|", "Which Gift:S|,What Gift:S|", mutableMetaTraits, "Gift:S|Exchange,AmazonOrderID:S|", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for define Order **: " + res);
 
         results = await cls.queryCls("Gift")
         var orderCls = results.chainID + '.' + results.hashID
 
         var mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
-        res = await orders.make(mnemonic, identityID2, orderCls, "stake", config.makerownableid, "100000", "0.000000000000000001", "description:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
+        res = await orders.make(mnemonic, identityID2, orderCls, "stake", config.makerownableid, "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for Make Order **: " + res);
 
         results = await orders.query("Gift")
@@ -127,14 +125,14 @@ async function test(){
         console.log("\n\n**TX HASH for Cancel Order **: " + res);
 
         mutableMetaProperties = "exchangeRate:D|0.000000000000000001,makerSplit:D|0.000000000000000001"
-        res = await orders.make(mnemonic, identityID2, orderCls, "stake", "stake", "100000", "0.000000000000000001", "description:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
+        res = await orders.make(mnemonic, identityID2, orderCls, "stake", "stake", "100000", "0.000000000000000001", "descriptions:S|awesomeChocolates", "Which Gift:S|Christmas Gift,What Gift:S|Chocolates", mutableMetaProperties, "Gift:S|Exchange,AmazonOrderID:S|1234", 25, "stake", 200000, "block")
         console.log("\n\n**TX HASH for Make Order **: " + res);
 
-        res = await orders.take(mnemonic, identityID2, "0.000000000000000001", orderID, 25, "stake", 200000, "block")
-        console.log("\n\n**TX HASH for Take Order **: " + res);
-
-        res = await assets.burn(mnemonic, identityID1, assetID, "25", "stake", "200000", "block", "")
-        console.log("\n\n**TX HASH for Asset Burn**: " + res);
+        // res = await orders.take(mnemonic, identityID2, "0.000000000000000001", orderID, 25, "stake", 200000, "block")
+        // console.log("\n\n**TX HASH for Take Order **: " + res);
+        //
+        // res = await assets.burn(mnemonic, identityID1, assetID, "25", "stake", "200000", "block", "")
+        // console.log("\n\n**TX HASH for Asset Burn**: " + res);
 
     } else {
         console.log("ERROR!!");

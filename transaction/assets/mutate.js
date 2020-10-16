@@ -12,7 +12,7 @@ function mutate(mnemonic, fromID, assetID, feesAmount, feesToken, gas, mode, mem
         'headers': {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"type":"/xprt/assets/mutate/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"fromID":fromID,"assetID":assetID,"mutableProperties":"ASSET1:S|","mutableMetaProperties":"ASSET3:S|num3"}})
+        body: JSON.stringify({"type":"/xprt/assets/mutate/request","value":{"baseReq":{"from":config.testAccountAddress,"chain_id":config.chain_id},"fromID":fromID,"assetID":assetID,"mutableProperties":"Popularity:S|NotVery","mutableMetaProperties":"CustSatisfaction:S|NotSatisfied,burn:H|1"}})
     };
     return new Promise(function(resolve, reject) {
         request(options, function (error, response) {
